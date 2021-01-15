@@ -28,8 +28,10 @@ class producto
 			$result = array();
 
 			$result = $this->conection->query("SELECT * FROM producto");
-			while ($actor = $result->fetch_assoc()) {
-				$resultItems[] = $actor;
+			while ($element = $result->fetch_assoc()) {
+				//agregar la razon social delproveedor 
+				$element["proveedorRazonSocial"] = $this->obtenerNombreProveedorXPorducto($element["idProveedor"]);
+				$resultItems[] = $element;
 			}
 			//print_r($resultItems);
 			return $resultItems;
@@ -38,6 +40,12 @@ class producto
 		{
 			die($e->getMessage());
 		}
+	}
+	public function obtenerNombreProveedorXPorducto($idProveeedorPorducto){
+		$result = $this->conection->query("SELECT * FROM proveedor where idProveedor= '".$idProveeedorPorducto."'");
+		$row= $result->fetch_assoc();
+		return  $row["razonS"];
+
 	}
 
 	public function Obtener($idProducto)
@@ -87,7 +95,8 @@ class producto
 			$sql = "UPDATE producto SET
 						nomprod          = '$data->nomprod',
 						precioU        = $data->precioU,
-            descrip        = '$data->descrip'
+            descrip        = '$data->descrip',
+			idProveedor        = '$data->idProveedor'
 					WHERE idProducto = '$data->idProducto'";
 			$this->conection->query($sql);
 
@@ -105,7 +114,6 @@ class producto
 		$sql = "INSERT INTO producto (idProducto,idProveedor,nomprod,precioU,descrip)
 		        VALUES ('$data->idProducto', '$data->idProveedor', '$data->nomprod', $data->precioU,'$data->descrip')";
 
-		//echo $sql; //die();
 
 		$this->conection->query($sql);
 		} catch (Exception $e)

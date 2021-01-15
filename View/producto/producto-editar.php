@@ -11,8 +11,14 @@
     <input type="hidden" name="idProducto" value="<?php echo $prod["idProducto"]; ?>" />
 
     <div class="form-group">
-        <label>idProveedor Proveedor</label>
-        <input type="text" name="idProveedor" value="<?php echo $prod["idProveedor"]; ?>" class="form-control" placeholder="Ingrese idProveedor Proveedor" data-validacion-tipo="requerido|min:20" />
+        <label>Proveedor</label>
+        <select class="form-control" name="idProveedor" >
+            <?php foreach($proveedores as $r): ?>
+            <option value="<?php echo $r["idProveedor"]; ?>"  <?php if($r["idProveedor"] == $prod["idProveedor"] ) echo " selected"; ?> >
+                <?php echo $r["razonS"]." (".$r["idProveedor"].")"; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
     <div class="form-group">
@@ -21,7 +27,7 @@
     </div>
 
     <div class="form-group">
-        <label>Precio UidProveedorario</label>
+        <label>Precio Unitario</label>
         <input type="text" name="precioU" value="<?php echo $prod["precioU"]; ?>" class="form-control" placeholder="Ingrese precio uidProveedorario" data-validacion-tipo="requerido|min:20" />
     </div>
 

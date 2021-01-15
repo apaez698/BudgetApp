@@ -6,7 +6,6 @@
   <li><a href="?c=producto">Productos</a></li>
   <li class="active">Nuevo Registro</li>
 </ol>
-
 <form id="frm-producto" action="?c=producto&a=Guardar" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
@@ -16,7 +15,13 @@
 
     <div class="form-group">
         <label>Ruc Proveedor</label>
-        <input type="text" name="idProveedor" required value="<?php echo $prod->idProveedor; ?>" class="form-control" placeholder="Ingrese Ruc Proveedor" data-validacion-tipo="requerido|min:20" />
+        <select class="form-control" name="idProveedor">
+            <?php foreach($proveedores as $r): ?>
+            <option value="<?php echo $r["idProveedor"]; ?>">
+                <?php echo $r["razonS"]." (".$r["idProveedor"].")"; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
     </div>
 
     <div class="form-group">

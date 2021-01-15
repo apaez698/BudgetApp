@@ -23,7 +23,8 @@
         <tr>
             <td><?php echo $r["idProducto"]; ?></td>
 
-            <td><?php echo $r["idProveedor"]; ?></td>
+
+            <td><?php echo $r["proveedorRazonSocial"]."(".$r["idProveedor"].")"; ?></td>
             <td><?php echo $r["nomprod"]; ?></td>
             <td><?php echo $r["precioU"]; ?></td>
             <td><?php echo $r["descrip"]; ?></td>
