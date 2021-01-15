@@ -16,18 +16,22 @@
         </tr>
     </thead>
     <tbody>
+
     <?php foreach($this->model->Listar() as $r): ?>
+    <?php 
+        ?>
         <tr>
-            <td><?php echo $r->idProducto; ?></td>
-            <td><?php echo $r->idProveedor; ?></td>
-            <td><?php echo $r->nomprod; ?></td>
-            <td><?php echo $r->precioU; ?></td>
-            <td><?php echo $r->descrip; ?></td>
+            <td><?php echo $r["idProducto"]; ?></td>
+
+            <td><?php echo $r["idProveedor"]; ?></td>
+            <td><?php echo $r["nomprod"]; ?></td>
+            <td><?php echo $r["precioU"]; ?></td>
+            <td><?php echo $r["descrip"]; ?></td>
             <td>
-                <a href="?c=producto&a=Crud&idProducto=<?php echo $r->idProducto; ?>">Editar</a>
+                <a href="?c=producto&a=Crud&idProducto=<?php echo $r["idProducto"]; ?>">Editar</a>
             </td>
             <td>
-                <a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=producto&a=Eliminar&idProducto=<?php echo $r->idProducto; ?>">Eliminar</a>
+                <a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=producto&a=Eliminar&idProducto=<?php echo $r["idProducto"]; ?>">Eliminar</a>
             </td>
         </tr>
     <?php endforeach; ?>
