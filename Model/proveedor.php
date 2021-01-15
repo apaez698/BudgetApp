@@ -35,7 +35,7 @@ class proveedor
 			$resultItems = array();
 			//Sentencia SQL para selección de datos.
 			$sql = "select * from proveedor";
-			echo $sql;
+			//echo $sql;
 			$result = $this->conection->query($sql);
 			
 			while ($actor = $result->fetch_assoc()) {
@@ -60,7 +60,7 @@ class proveedor
 			//Sentencia SQL para selección de datos utilizando
 			//la clausula Where para especificar el idProveedor del proveedor.
 			$sql = "SELECT * FROM proveedor WHERE idProveedor = '$idProveedor'";
-			echo $sql;
+			//echo $sql;
 			$result = $this->conection->query($sql);
 			//Ejecución de la sentencia SQL utilizando el parámetro idProveedor.
 			$row = $result->fetch_assoc();
@@ -79,7 +79,7 @@ class proveedor
 			//Sentencia SQL para eliminar una tupla utilizando
 			//la clausula Where.
 			$sql = "DELETE FROM proveedor WHERE idProveedor = '$idProveedor'";
-			echo $sql;
+			//echo $sql;
 			if($this->conection->query($sql) === TRUE) {
 				echo "<p>Successfully removed!!</p>";
 				return true;
@@ -127,7 +127,7 @@ class proveedor
 			//Sentencia SQL.
 			$sql = "INSERT INTO proveedor (idProveedor,razonS,dir,tel)
 				VALUES ('$data->idProveedor', '$data->razonS', '$data->dir', '$data->tel')";
-			echo $sql; //die();
+			//echo $sql; //die();
 
 			$this->conection->query($sql);
 		    

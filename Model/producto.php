@@ -45,7 +45,7 @@ class producto
 		try
 		{
 			$sql = "SELECT * FROM producto WHERE idProducto = '$idProducto'";
-			echo $sql;
+			//echo $sql;
 			$result = $this->conection->query($sql);
 			//Ejecución de la sentencia SQL utilizando el parámetro idProducto.
 			$row = $result->fetch_assoc();
@@ -63,7 +63,7 @@ class producto
 			
 
 			$sql = "DELETE FROM producto WHERE idProducto = '$idProducto'";
-			echo $sql;
+			//echo $sql;
 			if($this->conection->query($sql) === TRUE) {
 				echo "<p>Successfully removed!!</p>";
 				return true;
@@ -105,7 +105,7 @@ class producto
 		$sql = "INSERT INTO producto (idProducto,idProveedor,nomprod,precioU,descrip)
 		        VALUES ('$data->idProducto', '$data->idProveedor', '$data->nomprod', $data->precioU,'$data->descrip')";
 
-		echo $sql; //die();
+		//echo $sql; //die();
 
 		$this->conection->query($sql);
 		} catch (Exception $e)
