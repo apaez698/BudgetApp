@@ -11,22 +11,22 @@
 
     <div class="form-group">
       <label>Ruc</label>
-      <input type="text" name="idProveedor" value="<?php echo $pvd->idProveedor; ?>" class="form-control" placeholder="Ingrese Ruc Proveedor" data-validacion-tipo="requerido|min:20" />
+      <input type="text" name="idProveedor" pattern="[0-9]" minlength="10" maxlength="10" value="<?php echo $pvd->idProveedor; ?>" class="form-control" placeholder="Ingrese Ruc Proveedor (Solo números)" data-validacion-tipo="requerido|min:10" />
     </div>
 
     <div class="form-group">
         <label>Razón Social</label>
-        <input type="text" name="razonS" value="<?php echo $pvd->razonS; ?>" class="form-control" placeholder="Ingrese Razón Social" data-validacion-tipo="requerido|min:100" />
+        <input type="text" name="razonS"  required value="<?php echo $pvd->razonS; ?>" class="form-control" placeholder="Ingrese Razón Social" data-validacion-tipo="requerido|min:100" />
     </div>
 
     <div class="form-group">
         <label>Dirección</label>
-        <input type="text" name="dir" value="<?php echo $pvd->dir; ?>" class="form-control" placeholder="Ingrese dirección proveedor" data-validacion-tipo="requerido|min:100" />
+        <input type="text" name="dir" required value="<?php echo $pvd->dir; ?>" class="form-control" placeholder="Ingrese dirección proveedor" data-validacion-tipo="requerido|min:100" />
     </div>
 
     <div class="form-group">
         <label>Teléfono</label>
-        <input type="text" name="tel" value="<?php echo $pvd->tel; ?>" class="form-control" placeholder="Ingrese teléfono proveedor" data-validacion-tipo="requerido|min:10" />
+        <input type="text" name="tel"  required pattern="[0-9]" value="<?php echo $pvd->tel; ?>" class="form-control" placeholder="Ingrese teléfono proveedor (Solo números)" data-validacion-tipo="requerido|min:10" />
     </div>
 
     <hr />
@@ -41,5 +41,7 @@
         $("#frm-proveedor").submit(function(){
             return $(this).validate();
         });
+
+
     })
 </script>

@@ -11,27 +11,27 @@
 
     <div class="form-group">
       <label>Código Producto</label>
-      <input type="text" name="idProducto" value="<?php echo $prod->idProducto; ?>" class="form-control" placeholder="Ingrese Código Producto" data-validacion-tipo="requerido|min:20" />
+      <input type="text" name="idProducto" required value="<?php echo $prod->idProducto; ?>" class="form-control" placeholder="Ingrese Código Producto" data-validacion-tipo="requerido|min:20" />
     </div>
 
     <div class="form-group">
         <label>Ruc Proveedor</label>
-        <input type="text" name="idProveedor" value="<?php echo $prod->idProveedor; ?>" class="form-control" placeholder="Ingrese Ruc Proveedor" data-validacion-tipo="requerido|min:20" />
+        <input type="text" name="idProveedor" required value="<?php echo $prod->idProveedor; ?>" class="form-control" placeholder="Ingrese Ruc Proveedor" data-validacion-tipo="requerido|min:20" />
     </div>
 
     <div class="form-group">
         <label>Nombre Producto</label>
-        <input type="text" name="nomprod" value="<?php echo $prod->nomprod; ?>" class="form-control" placeholder="Ingrese nombre producto" data-validacion-tipo="requerido|min:100" />
+        <input type="text" name="nomprod" required value="<?php echo $prod->nomprod; ?>" class="form-control" placeholder="Ingrese nombre producto" data-validacion-tipo="requerido|min:100" />
     </div>
 
     <div class="form-group">
-        <label>Precio Unitario</label>
-        <input type="text" name="precioU" value="<?php echo $prod->precioU; ?>" class="form-control" placeholder="Ingrese precio unitario" data-validacion-tipo="requerido|min:20" />
+        <label>Precio Unitario($)</label>
+        <input type="number" step="0.01" min="0" name="precioU" required value="<?php echo $prod->precioU; ?>" class="form-control" placeholder="Ingrese precio unitario (15.60)" data-validacion-tipo="requerido|min:20" />
     </div>
 
     <div class="form-group">
         <label>Descripción del Producto</label>
-        <input type="text" name="descrip" value="<?php echo $prod->descrip; ?>" class="form-control" placeholder="Ingrese descripción producto" data-validacion-tipo="requerido|min:240" />
+        <input type="text" name="descrip" required value="<?php echo $prod->descrip; ?>" class="form-control" placeholder="Ingrese descripción producto" data-validacion-tipo="requerido|min:240" />
     </div>
 
     <hr />
