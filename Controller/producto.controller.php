@@ -1,12 +1,15 @@
 <?php
 require_once 'model/producto.php';
+require_once 'model/proveedor.php';
 
 class ProductoController{
 
     private $model;
+    private $modelProveedor;
 
     public function __CONSTRUCT(){
         $this->model = new producto();
+        $this->modelProveedor = new proveedor();
     }
 
     //Llamado plantilla principal
@@ -18,9 +21,12 @@ class ProductoController{
 
     public function Crud(){
         $prod = new producto();
+        $proveedores = array();
+        
 
         if(isset($_REQUEST['idProducto'])){
             $prod = $this->model->Obtener($_REQUEST['idProducto']);
+            $proveedores = $this->modelProveedor->Listar();
         }
 
         require_once 'view/header.php';
@@ -30,6 +36,8 @@ class ProductoController{
 
     public function Nuevo(){
         $prod = new producto();
+        $proveedores = array();
+        $proveedores = $this->modelProveedor->Listar();
 
         require_once 'view/header.php';
         require_once 'view/producto/producto-nuevo.php';
@@ -58,6 +66,10 @@ class ProductoController{
         $prod->nomprod = $_REQUEST['nomprod'];
         $prod->precioU = $_REQUEST['precioU'];
         $prod->descrip = $_REQUEST['descrip'];
+       
+
+        //die();
+
 
         $this->model->Actualizar($prod);
 
