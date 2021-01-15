@@ -2,7 +2,7 @@
 class proveedor
 {
 	//Atributo para conexión a SGBD
-	private $pdo;
+	private $conection;
 
 		//Atributos del objeto proveedor
     public $idProveedor;
@@ -15,7 +15,10 @@ class proveedor
 	{
 		try
 		{
-			$this->pdo = Database::Conectar();
+			
+			$this->conection =  Database::Conectar();
+			
+
 		}
 		catch(Exception $e)
 		{
@@ -29,14 +32,17 @@ class proveedor
 	{
 		try
 		{
-			$result = array();
+			$resultItems = array();
 			//Sentencia SQL para selección de datos.
-			$stm = $this->pdo->prepare("SELECT * FROM proveedor");
-			//Ejecución de la sentencia SQL.
-			$stm->execute();
-			//fetchAll — Devuelve un array que contiene todas las filas del conjunto
-			//de resultados
-			return $stm->fetchAll(PDO::FETCH_OBJ);
+			$sql = "select * from proveedor";
+			echo $sql;
+			$result = $this->conection->query($sql);
+			
+			while ($actor = $result->fetch_assoc()) {
+				$resultItems[] = $actor;
+			}
+			//print_r($resultItems);
+			return $resultItems;
 		}
 		catch(Exception $e)
 		{
@@ -53,10 +59,12 @@ class proveedor
 		{
 			//Sentencia SQL para selección de datos utilizando
 			//la clausula Where para especificar el idProveedor del proveedor.
-			$stm = $this->pdo->prepare("SELECT * FROM proveedor WHERE idProveedor = ?");
+			$sql = "SELECT * FROM proveedor WHERE idProveedor = '$idProveedor'";
+			echo $sql;
+			$result = $this->conection->query($sql);
 			//Ejecución de la sentencia SQL utilizando el parámetro idProveedor.
-			$stm->execute(array($idProveedor));
-			return $stm->fetch(PDO::FETCH_OBJ);
+			$row = $result->fetch_assoc();
+			return $row;
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
@@ -70,10 +78,18 @@ class proveedor
 		{
 			//Sentencia SQL para eliminar una tupla utilizando
 			//la clausula Where.
-			$stm = $this->pdo
-			            ->prepare("DELETE FROM proveedor WHERE idProveedor = ?");
+			$sql = "DELETE FROM proveedor WHERE idProveedor = '$idProveedor'";
+			echo $sql;
+			if($this->conection->query($sql) === TRUE) {
+				echo "<p>Successfully removed!!</p>";
+				return true;
 
-			$stm->execute(array($idProveedor));
+				
+			} else {
+				echo "Error updating record : " . $this->conection->error;
+				return false;
+			}
+			
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
@@ -87,21 +103,16 @@ class proveedor
 		try
 		{
 			//Sentencia SQL para actualizar los datos.
+			//print_r($data); die();
 			$sql = "UPDATE proveedor SET
-						razonS          = ?,
-						dir        = ?,
-            tel        = ?
-				    WHERE idProveedor = ?";
+						razonS          = '".$data->razonS."',
+						dir        = '".$data->dir."',
+            tel        = '".$data->tel."'
+					WHERE idProveedor = '".$data->idProveedor."'";
+			//echo $sql;
 			//Ejecución de la sentencia a partir de un arreglo.
-			$this->pdo->prepare($sql)
-			     ->execute(
-				    array(
-                        $data->razonS,
-                        $data->dir,
-                        $data->tel,
-                        $data->idProveedor
-					)
-				);
+			$this->conection->query($sql);
+
 		} catch (Exception $e)
 		{
 			die($e->getMessage());
@@ -115,17 +126,11 @@ class proveedor
 		{
 			//Sentencia SQL.
 			$sql = "INSERT INTO proveedor (idProveedor,razonS,dir,tel)
-		        VALUES (?, ?, ?, ?)";
+				VALUES ('$data->idProveedor', '$data->razonS', '$data->dir', '$data->tel')";
+			echo $sql; //die();
 
-			$this->pdo->prepare($sql)
-		     ->execute(
-				array(
-                    $data->idProveedor,
-                    $data->razonS,
-                    $data->dir,
-                    $data->tel,
-                )
-			);
+			$this->conection->query($sql);
+		    
 		} catch (Exception $e)
 		{
 			die($e->getMessage());

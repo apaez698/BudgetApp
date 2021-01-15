@@ -17,15 +17,15 @@
     <tbody>
     <?php foreach($this->model->Listar() as $r): ?>
         <tr>
-            <td><?php echo $r->idProveedor; ?></td>
-            <td><?php echo $r->razonS; ?></td>
-            <td><?php echo $r->dir; ?></td>
-            <td><?php echo $r->tel; ?></td>
+            <td><?php echo $r["idProveedor"]; ?></td>
+            <td><?php echo $r["razonS"]; ?></td>
+            <td><?php echo $r["dir"]; ?></td>
+            <td><?php echo $r["tel"]; ?></td>
             <td>
-                <a href="?c=proveedor&a=Crud&idProveedor=<?php echo $r->idProveedor; ?>">Editar</a>
+                <a href="?c=proveedor&a=Crud&idProveedor=<?php echo $r["idProveedor"]; ?>">Editar</a>
             </td>
             <td>
-                <a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=proveedor&a=Eliminar&idProveedor=<?php echo $r->idProveedor; ?>">Eliminar</a>
+                <a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=proveedor&a=Eliminar&idProveedor=<?php echo $r["idProveedor"]; ?>">Eliminar</a>
             </td>
         </tr>
     <?php endforeach; ?>

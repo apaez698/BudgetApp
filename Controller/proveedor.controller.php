@@ -71,7 +71,14 @@ class ProveedorController{
         $pvd->razonS = $_REQUEST['razonS'];
         $pvd->dir = $_REQUEST['dir'];
         $pvd->tel = $_REQUEST['tel'];
+        echo "------te------------<br>";
+        print_r($pvd);
 
+        echo "proveedor modificar".$pvd->idProveedor;
+        echo "---------tt---------<br>";
+        //die();
+
+        
         $this->model->Actualizar($pvd);
 
         header('Location: index.php');
